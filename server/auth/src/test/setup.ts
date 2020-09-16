@@ -39,14 +39,20 @@ afterAll(async () => {
 });
 
 global.signin = async () => {
-  const email = 'test@test.com';
-  const password = 'password';
+  const voicemodTestUser = {
+    email: "voicemotestd@voicemod.com",
+    password: "voicemod",
+    name: "voicemod",
+    surname: "surname",
+    country: "sp",
+    phone: "600000000",
+    postalCode:"07181"
+  }
 
   const response = await request(app)
     .post('/api/users/signup')
     .send({
-      email,
-      password
+      ...voicemodTestUser
     })
     .expect(201);
 
