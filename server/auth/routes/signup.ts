@@ -1,4 +1,4 @@
-import { validateRequest } from '@aspvoicemod/common'
+import { BadRequestError, validateRequest } from '@aspvoicemod/common'
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
 import jwt from 'jsonwebtoken'
@@ -22,4 +22,28 @@ router.post('/api/users/signup',
 
   const { email, password, name, surname, country, phone, postalCode } = req.body
 
+  const existsUser = await User.findOne({email: email})
+
+  if (existsUser) {
+    throw new BadRequestError('Email in use')
+  }
+
+  // Create new user
+  const user = User.build({...req.body})
+  await user.save()
+
+  // Generate JWT
+  const userJWT = jwt.sign({
+    id: user.id,
+    emal: user.email
+  }, process.env.JWT_KEY)
+
+  // Store it on session object
+  req.session = {
+    jwt: userJWT
+  }
+
+  res.status(201).send(user)
 })
+
+export { router as signUpRouter }
