@@ -9,7 +9,7 @@ build:
     push: false
   artifacts:
     - image: asolerp/voicemod-auth
-      context: auth
+      context: server/auth
       docker:
         dockerfile: Dockerfile
       sync:
