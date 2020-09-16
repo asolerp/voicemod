@@ -23,7 +23,7 @@ router.put(
   validateRequest, 
   async (req: Request, res: Response) => {
 
-  const user = await User.findById(req.currentUser!.id)
+  const user = await User.findByIdAndUpdate(req.currentUser!.id, {...req.body}, {new: true})
 
 
   if (!user) {
@@ -33,8 +33,6 @@ router.put(
   if (user.id !== req.currentUser!.id) {
     throw new NotAuthorizedError()
   }
-
-  user.set({...req.body})
 
   res.status(204).send(user)
  

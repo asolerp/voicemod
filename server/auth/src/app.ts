@@ -9,6 +9,7 @@ import { signUpRouter } from './routes/signup'
 import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
 import { updateUserRouter } from './routes/update-user'
+import { showUserRouter } from './routes/show-user'
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use(signUpRouter)
 app.use(signInRouter)
 app.use(currentUserRouter)
 app.use(updateUserRouter)
+app.use(showUserRouter)
 
 
 app.all('*', async(req, res) => {
