@@ -1,6 +1,6 @@
 {
-  "name": "@aspvoicemod/common",
-  "version": "1.0.0",
+  "name": "@asvoicemodtest/common",
+  "version": "1.0.3",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
