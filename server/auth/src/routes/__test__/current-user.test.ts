@@ -5,7 +5,6 @@ import { app } from '../../app'
 it('responds with the details of the current user', async () => {
 
   const cookie = await global.signin()
-  console.log('Cookie', cookie)
 
   const response = await request(app)
                             .get('/api/users/currentuser')
