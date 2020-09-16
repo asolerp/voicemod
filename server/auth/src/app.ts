@@ -6,6 +6,7 @@ import { errorHandler, NotFoundError } from '@aspvoicemod/common'
 
 //Routes
 import { signUpRouter } from './routes/signup' 
+import { currentUserRouter } from './routes/current-user'
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(
 )
 
 app.use(signUpRouter)
+app.use(currentUserRouter)
 
 app.all('*', async(req, res) => {
   throw new NotFoundError()
