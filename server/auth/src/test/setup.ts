@@ -3,6 +3,16 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../app';
 
+export const voicemodTestUser = {
+  email: "voicemotestd@voicemod.com",
+  password: "voicemod",
+  name: "voicemod",
+  surname: "surname",
+  country: "sp",
+  phone: "600000000",
+  postalCode:"07181"
+}
+
 declare global {
   namespace NodeJS {
     interface Global {
@@ -39,16 +49,6 @@ afterAll(async () => {
 });
 
 global.signin = async () => {
-  const voicemodTestUser = {
-    email: "voicemotestd@voicemod.com",
-    password: "voicemod",
-    name: "voicemod",
-    surname: "surname",
-    country: "sp",
-    phone: "600000000",
-    postalCode:"07181"
-  }
-
   const response = await request(app)
     .post('/api/users/signup')
     .send({

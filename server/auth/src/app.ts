@@ -8,6 +8,7 @@ import { errorHandler, NotFoundError } from '@aspvoicemod/common'
 import { signUpRouter } from './routes/signup' 
 import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
+import { updateUserRouter } from './routes/update-user'
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(
 app.use(signUpRouter)
 app.use(signInRouter)
 app.use(currentUserRouter)
+app.use(updateUserRouter)
 
 
 app.all('*', async(req, res) => {
