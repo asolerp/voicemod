@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@aspvoicemod/common@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@aspvoicemod/common/-/common-1.0.7.tgz#a6ca813bf6bb0551ec69d4e0eacf1498a72f88e6"
+"@aspvoicemod/common@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@aspvoicemod/common/-/common-1.0.8.tgz#26a3e8f731b279d9a4891794c5a595d48ca8e56b"
   dependencies:
     "@types/cookie-session" "^2.0.39"
     "@types/express" "^4.17.5"
@@ -478,6 +478,12 @@
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.33.tgz#31610c901eca573b8713c3330abc6e6b9f588546"
   dependencies:
     "@types/node" "*"
+
+"@types/cookie-parser@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/cookie-parser/-/cookie-parser-1.4.2.tgz#e4d5c5ffda82b80672a88a4281aaceefb1bd9df5"
+  dependencies:
+    "@types/express" "*"
 
 "@types/cookie-session@^2.0.39":
   version "2.0.41"
@@ -1149,6 +1155,13 @@ convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.7.0.tgz#17a2cb882d7f77d3490585e2ce6c524424a3a442"
   dependencies:
     safe-buffer "~5.1.1"
+
+cookie-parser@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.5.tgz#3e572d4b7c0c80f9c61daf604e4336831b5d1d49"
+  dependencies:
+    cookie "0.4.0"
+    cookie-signature "1.0.6"
 
 cookie-session@^1.4.0:
   version "1.4.0"

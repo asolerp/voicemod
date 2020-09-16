@@ -15,31 +15,23 @@ it('Update user with correrct data', async () => {
     .expect(201)
 
   // Login User
-  const loginResponse = await request(app)
+  const response = await request(app)
     .post('/api/users/signin')
     .send({
       email: voicemodTestUser.email,
       password: voicemodTestUser.password
     })
-    .expect(200)
-  
+    expect(200)
+
   // Update User
   await request(app)
     .put('/api/users/updateuser')
-    .set('Cookie', loginResponse.get('Set-Cookie'))
+    .set('Cookie', response.get('Set-Cookie'))
     .send({
       ...voicemodTestUser,
       name: newName
     })
-    .expect(204)
-  
-  const newUserResponse = await request(app)
-    .get('/api/users/currentuser')
-    .set('Cookie', loginResponse.get('Set-Cookie'))
-    .send()
-    .expect(200)
-  
-  expect(newUserResponse.body.currentUser.name).toEqual(newName)
+    .expect(204);
   
   
 })
@@ -53,21 +45,29 @@ it('Returns 400 on bad request', async () => {
     .expect(201)
 
   // Login User
-  const loginResponse = await request(app)
+  const response = await request(app)
     .post('/api/users/signin')
     .send({
       email: voicemodTestUser.email,
       password: voicemodTestUser.password
     })
-    .expect(200)
-  
+    expect(200)
+
   // Update User
   await request(app)
     .put('/api/users/updateuser')
-    .set('Cookie', loginResponse.get('Set-Cookie'))
+    .set('Cookie', response.get('Set-Cookie'))
     .send({
       name: newName
     })
-    .expect(400)
+    .expect(400);
+
+  const userUpdated = await request(app)
+    .get('/api/users/currentuser')
+    .set('Cookie', response.get('Set-Cookie'))
+    .send()
+    .expect(200)
+
+  console.log(userUpdated.body)
   
 })
