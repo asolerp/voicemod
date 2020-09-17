@@ -17,7 +17,6 @@ it('Returns user if is authorized', async () => {
     .set('Cookie', cookie)
     .send()
     .expect(200)
-
 })
 
 it('Fails if not authorized', async () => {

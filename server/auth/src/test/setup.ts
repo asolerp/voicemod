@@ -3,8 +3,18 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../app';
 
-export const voicemodTestUser = {
-  email: "voicemotestd@voicemod.com",
+export const voicemodTestUser1 = {
+  email: "voicemotestd1@voicemod.com",
+  password: "voicemod",
+  name: "voicemod",
+  surname: "surname",
+  country: "sp",
+  phone: "600000000",
+  postalCode:"07181"
+}
+
+export const voicemodTestUser2 = {
+  email: "voicemotestd2@voicemod.com",
   password: "voicemod",
   name: "voicemod",
   surname: "surname",
@@ -52,7 +62,7 @@ global.signin = async () => {
   const response = await request(app)
     .post('/api/users/signup')
     .send({
-      ...voicemodTestUser
+      ...voicemodTestUser1
     })
     .expect(201);
 

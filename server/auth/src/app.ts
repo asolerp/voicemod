@@ -10,6 +10,7 @@ import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
 import { updateUserRouter } from './routes/update-user'
 import { showUserRouter } from './routes/show-user'
+import { deleteUserRouter } from './routes/delete-user'
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use(signInRouter)
 app.use(currentUserRouter)
 app.use(updateUserRouter)
 app.use(showUserRouter)
+app.use(deleteUserRouter)
 
 
 app.all('*', async(req, res) => {

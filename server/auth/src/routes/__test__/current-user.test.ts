@@ -12,7 +12,7 @@ it('responds with the details of the current user', async () => {
     .send()
     .expect(200)
   
-  expect(response.body.currentUser.email).toEqual("voicemotestd@voicemod.com")
+  expect(response.body.currentUser.email).toEqual("voicemotestd1@voicemod.com")
 
 })
 

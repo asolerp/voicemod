@@ -6,9 +6,6 @@ const router = express.Router()
 
 
 router.get('/api/users/currentuser',currentUser,(req: Request, res: Response) => {
-
-  // const user = User.findById(req.currentUser!.id)
-
   res.status(200).send({ currentUser: req.currentUser || null })
 })
 

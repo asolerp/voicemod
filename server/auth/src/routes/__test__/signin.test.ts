@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { app } from '../../app'
 
-import { voicemodTestUser } from '../../test/setup'
+import { voicemodTestUser1 } from '../../test/setup'
 
 
 it('set cookie when login is successful', async ()=> {
@@ -9,15 +9,15 @@ it('set cookie when login is successful', async ()=> {
   // Create User
   await request(app)
     .post('/api/users/signup')
-    .send(voicemodTestUser)
+    .send(voicemodTestUser1)
     .expect(201)
 
   // Login User
   const response = await request(app)
     .post('/api/users/signin')
     .send({
-      email: voicemodTestUser.email,
-      password: voicemodTestUser.password
+      email: voicemodTestUser1.email,
+      password: voicemodTestUser1.password
     })
     expect(200)
 
@@ -29,8 +29,8 @@ it('fails if email does not exists', async () => {
   await request(app)
   .post('/api/users/signin')
   .send({
-    email: voicemodTestUser.email,
-    password: voicemodTestUser.password
+    email: voicemodTestUser1.email,
+    password: voicemodTestUser1.password
   })
   expect(400)
 })
