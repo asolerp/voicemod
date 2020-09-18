@@ -3,7 +3,8 @@ import {
   AUTH_REQUEST,
   AUTH_ERROR,
   AUTH_SUCCESS,
-  AUTH_LOGOUT
+  AUTH_LOGOUT,
+  AUTH_SIGNUP
 } from '../actions/auth'
 import { USER_REQUEST } from '../actions/user'
 import Vue from 'vue'
@@ -20,6 +21,27 @@ const getters = {
 }
 
 const actions = {
+  [AUTH_SIGNUP]: ({ commit, dispatch }, user) => {
+    return new Promise((resolve, reject) => {
+      commit(AUTH_REQUEST)
+      Vue.axios.post('/users/signup', user)
+        .then(resp => {
+          console.log(resp)
+          localStorage.setItem('user-token', resp.data.token)
+          // Here set the header of your ajax library to the token value.
+          // example with axios
+          // axios.defaults.headers.common['Authorization'] = resp.token
+          commit(AUTH_SUCCESS, resp)
+          dispatch(USER_REQUEST, resp.data.user._id)
+          resolve(resp)
+        })
+        .catch(err => {
+          commit(AUTH_ERROR, err)
+          localStorage.removeItem('user-token')
+          reject(err)
+        })
+    })
+  },
   [AUTH_REQUEST]: ({ commit, dispatch }, user) => {
     return new Promise((resolve, reject) => {
       commit(AUTH_REQUEST)

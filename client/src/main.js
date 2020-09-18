@@ -7,6 +7,8 @@ import VueAxios from 'vue-axios'
 import vuetify from './plugins/vuetify'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-default.css'
 
 Vue.config.productionTip = false
 
@@ -16,6 +18,7 @@ const instance = axios.create({
 
 Vue.use(VueAxios, instance)
 Vue.use(VueLodash, { name: 'custom', lodash: lodash })
+Vue.use(VueToast)
 
 new Vue({
   router,

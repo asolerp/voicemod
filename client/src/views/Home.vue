@@ -1,40 +1,43 @@
 <template>
   <v-container class='home-wrapper'>
-    <h2 class="home-wrapper__logout">Logout</h2>
-    <img class="home-wrapper__image" alt='Vue logo' src='../assets/logo.png'>
+    <div class="home-wrapper__logout">
+      <img class="home-wrapper__image" alt='Vue logo' src='../assets/logo.png'>
+      <h2 class="" @click="logout">Logout</h2>
+    </div>
     <v-row class="home-wrapper__row">
       <ValidationObserver v-slot="{ invalid }">
-        <form @submit.prevent="onSubmit">
-          <text-input v-model="user.email" label="Email" :fullWidth="true" name="email" rules="email" type="text" />
+        <form @submit.prevent="updateUser">
+          <text-input v-model="email" label="Email" :fullWidth="true" name="email" rules="required|email" type="text" />
           <div class="login-wrapper__row">
             <v-col class="mr">
-              <text-input v-model="user.password" :fullWidth="true" label="Password" name="password" rules="min:4|max:20" type="password"/>
-              <button-voicemod type="submit" title="Update password" :disabled="!user.password" mode="outliner"/>
+              <text-input v-model="password" :fullWidth="true" label="Password" name="password" rules="min:4|max:20" type="password"/>
+              <button-voicemod type="submit" title="Update password" :disabled="!password" mode="outliner"/>
             </v-col>
           </div>
           <div class="login-wrapper__row">
             <v-col class="mr">
-              <text-input v-model="user.name" :fullWidth="true" name="name" rules="" label="Nombre" type="text"/>
+              <text-input v-model="name" :fullWidth="true" name="name" rules="required" label="Name" type="text"/>
             </v-col>
              <v-col class="ml">
-              <text-input v-model="user.surname" :fullWidth="true" name="surname" rules="" label="Apellido" type="text"/>
+              <text-input v-model="surname" :fullWidth="true" name="surname" rules="required" label="Surname" type="text"/>
             </v-col>
           </div>
           <div class="login-wrapper__row">
             <v-col class="mr">
-              <text-input v-model="user.phone" :fullWidth="true" name="phone" rules="" label="Teléfono" type="text"/>
+              <text-input v-model="phone" :fullWidth="true" name="phone" rules="required" label="Phone" type="text"/>
             </v-col>
              <v-col class="ml" />
           </div>
           <div class="login-wrapper__row">
             <v-col class="mr">
-              <text-input v-model="user.country" :fullWidth="true" name="country" rules="" label="País" type="text"/>
+              <text-input v-model="country" :fullWidth="true" name="country" rules="required" label="Country" type="text"/>
             </v-col>
             <v-col class="ml">
-              <text-input v-model="user.postalCode" :fullWidth="true" name="postalCode" rules="" label="Código Postal" type="text"/>
+              <text-input v-model="postalCode" :fullWidth="true" name="postalCode" rules="required" label="Postal Code" type="text"/>
             </v-col>
           </div>
-          <button-voicemod type="submit" title="Sign Up" :disabled="invalid"/>
+          <button-voicemod type="submit" title="Update" :disabled="invalid"/>
+          <button-voicemod mode="delete" title="Delete User" :disabled="invalid"/>
         </form>
       </ValidationObserver>
     </v-row>
@@ -46,37 +49,97 @@
 import TextInput from '../components/TextInput'
 import ButtonVoicemod from '../components/ButtonVoicemod'
 import { ValidationObserver } from 'vee-validate'
-import { mapState } from 'vuex'
 
 // ACTIONS
 import { AUTH_LOGOUT } from '../store/actions/auth'
+import { USER_UPDATE, USER_UPDATE_REQUEST } from '../store/actions/user'
 
 export default {
   name: 'Home',
   components: { TextInput, ButtonVoicemod, ValidationObserver },
-  computed: mapState({ profile: state => state.user.profile }),
+  computed: {
+    email: {
+      get () {
+        return this.$store.state.user.profile.email
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'email', value })
+      }
+    },
+    name: {
+      get () {
+        return this.$store.state.user.profile.name
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'name', value })
+      }
+    },
+    surname: {
+      get () {
+        return this.$store.state.user.profile.surname
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'surname', value })
+      }
+    },
+    country: {
+      get () {
+        return this.$store.state.user.profile.country
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'country', value })
+      }
+    },
+    phone: {
+      get () {
+        return this.$store.state.user.profile.phone
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'phone', value })
+      }
+    },
+    postalCode: {
+      get () {
+        return this.$store.state.user.profile.postalCode
+      },
+      set (value) {
+        console.log('setting')
+        this.$store.commit(USER_UPDATE, { key: 'postalCode', value })
+      }
+    }
+  },
+  data: () => ({
+    password: ''
+  }),
   methods: {
+    updatePassword () {
+    },
+    updateUser () {
+      this.$store.dispatch(USER_UPDATE_REQUEST)
+        .then(() => {
+          this.$toast.open({
+            message: 'User updated',
+            type: 'success'
+          })
+        })
+        .catch(() => {
+          this.$toast.open({
+            message: 'Something went wrong',
+            type: 'error'
+          })
+        })
+    },
     logout () {
-      this.dispatch(AUTH_LOGOUT).then(() => {
+      this.$store.dispatch(AUTH_LOGOUT).then(() => {
         console.log('Logged Out')
         this.$router.push({ path: '/' })
       })
     }
-  },
-  data: () => ({
-    user: {
-      email: undefined,
-      password: undefined,
-      name: undefined,
-      surname: undefined,
-      country: undefined,
-      postalCode: undefined,
-      phone: undefined
-    }
-  }),
-  mounted () {
-    console.log(this.lodash)
-    // this.user = this.lodash.cloneDeep(this.profile)
   }
 }
 </script>
@@ -90,6 +153,10 @@ export default {
     justify-content: center;
     align-items: center;
     &__logout {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       position: absolute;
       top: 30px;
       right: 0px;
@@ -99,7 +166,7 @@ export default {
     &__image {
       width: 100px;
       height: 100px;
-      margin-top: 20px;
+      margin-bottom: 10px;
     }
     &__row {
       width: 50%
@@ -118,5 +185,8 @@ export default {
   }
   span {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

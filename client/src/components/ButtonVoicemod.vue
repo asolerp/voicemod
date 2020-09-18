@@ -1,5 +1,12 @@
 <template>
-    <button :class="`button-voicemod ${setMode}`" type="button" :disabled="disabled" @click="$emit('click')">{{title}}</button>
+    <button :class="[`button-voicemod ${setMode}`, disabled && 'disabled']" type="button" :disabled="disabled" @click="$emit('click')">
+      <v-progress-circular
+      v-if="loading"
+      indeterminate
+      color="primary"
+    ></v-progress-circular>
+    <span v-else>{{title}}</span>
+    </button>
 </template>
 
 <script>
@@ -17,6 +24,10 @@ export default {
     mode: {
       type: String,
       default: 'normal'
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -26,6 +37,8 @@ export default {
           return 'button-voicemod--normal'
         case 'outliner':
           return 'button-voicemod--outliner'
+        case 'delete':
+          return 'button-voicemod--delete'
         default:
           return 'button-voicemod--normal'
       }
@@ -35,6 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.disabled {
+  opacity: 0.3;
+}
 .button-voicemod {
   padding: 15px;
   box-shadow: 0px 0px 5px 0px rgb(70, 70, 70);
@@ -52,6 +68,9 @@ export default {
   }
   &--normal {
     background-color: #22a3eb;
+  }
+  &--delete {
+    background-color: #850a14;
   }
 }
 </style>
