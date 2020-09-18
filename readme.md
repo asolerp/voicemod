@@ -45,7 +45,7 @@ app
 ## Table of Contents
 
 - [Installation](#installation)
-- [Tests](#test)
+- [Tests](#tests)
 
 ---
 
