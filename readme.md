@@ -29,14 +29,19 @@ app
 │           └── test
 │               
 └── server
-      └── auth
-            └── src      
-                 ├── middleware
-                 ├── models
-                 ├── routes
-                 │     └── test  
-                 ├── services
-                 └── test  
+      ├── auth
+      │     └── src      
+      │          ├── middleware
+      │          ├── models
+      │          ├── routes
+      │          │     └── test  
+      │          ├── services
+      │          └── test  
+      └── common      
+            └── src 
+                 ├── errors
+                 └── middlewares
+
     
 
 ```
