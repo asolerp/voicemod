@@ -10,7 +10,7 @@ const router = express.Router()
 
 
 router.delete(
-  '/api/users/deleteUser',
+  '/api/users/deleteuser',
   currentUser,
   requireAuth,
   async( req: Request, res: Response) => {

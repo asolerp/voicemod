@@ -1,0 +1,61 @@
+* {-webkit-overflow-scrolling: touch}
+
+html {
+  font-size: 100% !important;
+
+  @include respond(xs) {
+    font-size: 60%;
+  }
+
+  @include respond(sm) {
+    font-size: 60%;
+  }
+
+  @include respond(md) {
+    font-size: 800%;
+  }
+
+  @include respond(lg) {
+    font-size: 80%;
+  }
+
+  @include respond(xl) {
+    font-size: 100%;
+  }
+
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.ml {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+.mr {
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.d-bottom {
+  justify-content: flex-end;
+  align-items: center;
+}
+

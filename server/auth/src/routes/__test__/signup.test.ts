@@ -35,12 +35,12 @@ it('Disallows duplicated email', async () => {
     .expect(400)
 })
 
-it('Set cookie after successful signup', async () => {
+it('Set token after successful signup', async () => {
   const response = await request(app)
     .post('/api/users/signup')
     .send(voicemodTestUser1)
     .expect(201)
 
-  expect(response.get('Set-Cookie')).toBeDefined()
+  expect(response.body.token).toBeDefined()
 
 })

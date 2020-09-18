@@ -4,7 +4,7 @@ import { app } from '../../app'
 import { voicemodTestUser1 } from '../../test/setup'
 
 
-it('set cookie when login is successful', async ()=> {
+it('returns token when login is successful', async ()=> {
 
   // Create User
   await request(app)
@@ -21,7 +21,7 @@ it('set cookie when login is successful', async ()=> {
     })
     expect(200)
 
-  expect(response.get('Set-Cookie')).toBeDefined()
+  expect(response.body.token).toBeDefined()
 
 })
 

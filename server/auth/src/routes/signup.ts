@@ -50,7 +50,7 @@ router.post(
     jwt: userJwt
   }
 
-  res.status(201).send(user)
+  res.status(201).send({auth: true, token: userJwt, user: user})
 })
 
 export { router as signUpRouter }

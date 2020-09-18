@@ -4,11 +4,11 @@ import { app } from '../../app'
 
 it('responds with the details of the current user', async () => {
 
-  const cookie = await global.signin()
+  const token = await global.signin()
 
   const response = await request(app)
     .get('/api/users/currentuser')
-    .set('Cookie', cookie)
+    .set('Authorization', 'bearer ' + token)
     .send()
     .expect(200)
   
