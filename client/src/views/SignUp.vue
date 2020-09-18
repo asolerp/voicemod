@@ -10,7 +10,7 @@
         </div>
           <text-input v-model="phone" name="phone" rules="required" label="Phone" type="text"/>
         <div class="login-wrapper__row">
-          <text-input v-model="country" name="country" rules="required" label="Country" type="text"/>
+          <select-input v-model="country" :list="countries" name="country" rules="required" label="Country" type="text"/>
           <text-input v-model="postalCode" name="postalCode" rules="required" label="Postal Code" type="text"/>
         </div>
         <button-voicemod :loading="status === 'loading'" type="submit" title="Sign Up" :disabled="invalid"/>
@@ -24,14 +24,16 @@
 <script>
 
 import TextInput from '../components/TextInput'
+import SelectInput from '../components/SelectInput'
 import ButtonVoicemod from '../components/ButtonVoicemod'
 import { ValidationObserver } from 'vee-validate'
+import { COUNTRIES } from '../utils/countries.js'
 
 import { AUTH_SIGNUP } from '../store/actions/auth'
 
 export default {
   name: 'SignUp',
-  components: { TextInput, ButtonVoicemod, ValidationObserver },
+  components: { TextInput, SelectInput, ButtonVoicemod, ValidationObserver },
   data: () => ({
     email: undefined,
     password: undefined,
@@ -40,7 +42,8 @@ export default {
     country: undefined,
     postalCode: undefined,
     phone: undefined,
-    error: undefined
+    error: undefined,
+    countriesList: COUNTRIES
   }),
   computed: {
     status () {
