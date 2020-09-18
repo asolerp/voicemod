@@ -1,5 +1,5 @@
 <template>
-  <v-container class='home-wrapper'>
+  <div class='home-wrapper'>
     <div class="home-wrapper__logout">
       <img class="home-wrapper__image" alt='Vue logo' src='../assets/logo.png'>
       <h2 class="" @click="logout">Logout</h2>
@@ -15,10 +15,10 @@
             </v-col>
           </div>
           <div class="login-wrapper__row">
-            <v-col class="mr">
+            <v-col cols="0" class="mr">
               <text-input v-model="name" :fullWidth="true" name="name" rules="required" label="Name" type="text"/>
             </v-col>
-             <v-col class="ml">
+             <v-col cols="0" class="ml">
               <text-input v-model="surname" :fullWidth="true" name="surname" rules="required" label="Surname" type="text"/>
             </v-col>
           </div>
@@ -49,7 +49,7 @@
         </form>
       </ValidationObserver>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -77,7 +77,6 @@ export default {
         return this.$store.state.user.profile.email
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'email', value })
       }
     },
@@ -86,7 +85,6 @@ export default {
         return this.$store.state.user.profile.name
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'name', value })
       }
     },
@@ -95,7 +93,6 @@ export default {
         return this.$store.state.user.profile.surname
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'surname', value })
       }
     },
@@ -104,7 +101,6 @@ export default {
         return this.$store.state.user.profile.country
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'country', value })
       }
     },
@@ -113,7 +109,6 @@ export default {
         return this.$store.state.user.profile.phone
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'phone', value })
       }
     },
@@ -122,7 +117,6 @@ export default {
         return this.$store.state.user.profile.postalCode
       },
       set (value) {
-        console.log('setting')
         this.$store.commit(USER_UPDATE, { key: 'postalCode', value })
       }
     }
@@ -137,7 +131,6 @@ export default {
     },
     deleteUser () {
       this.$store.dispatch(USER_DELETE_REQUEST).then(() => {
-        console.log('User deleted')
         window.location.reload()
       })
     },
@@ -169,7 +162,6 @@ export default {
     },
     logout () {
       this.$store.dispatch(AUTH_LOGOUT).then(() => {
-        console.log('Logged Out')
         this.$router.push({ name: 'Auth' })
       })
     }
@@ -190,12 +182,18 @@ export default {
     color: #000;
   }
   .home-wrapper {
+    margin: 0;
+    padding: 0;
+    background: #212529;
     position: relative;
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @include respond(xl) {
+      height: 100%;
+    }
     &__logout {
       display: flex;
       flex-direction: column;
@@ -203,9 +201,16 @@ export default {
       align-items: center;
       position: absolute;
       top: 30px;
-      right: 0px;
+      right: 30px;
       color: white;
       cursor: pointer;
+      @include respond(xs) {
+        position: relative;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 50px 0 50px 0;
+      }
     }
     &__image {
       width: 100px;
@@ -213,7 +218,10 @@ export default {
       margin-bottom: 10px;
     }
     &__row {
-      width: 50%
+      width: 50%;
+      @include respond(xs) {
+        width: 100%;
+      }
     }
   }
   .login-wrapper {
@@ -224,7 +232,10 @@ export default {
     &__row {
       display: flex;
       justify-content: space-between;
-      width: 100%
+      width: 100%;
+      @include respond(xs) {
+        flex-direction: column;
+      }
     }
   }
   span {

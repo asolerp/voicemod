@@ -1,18 +1,18 @@
 <template>
-  <v-container class="login-wrapper">
+  <div class="login-wrapper">
     <v-row class="login-wrapper__row">
-      <v-col class="login-wrapper__lcolumn">
+      <v-col cols="0" md="6" class="login-wrapper__lcolumn">
         <logo />
         <h1 style="color: white">{{getTitle}}</h1>
       </v-col>
-      <v-col class="login-wrapper__rcolumn">
+      <v-col cols="12" md="6" class="login-wrapper__rcolumn">
           <component
             :is="activeAuth"
             @change-auth-screen="showAuth"
           />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -44,6 +44,13 @@ export default {
 <style lang="scss" scoped>
   .login-wrapper {
     height: 100%;
+    width: 100%;
+    margin-right: 0 !important;
+    margin: 0;
+    padding: 0;
+    @include respond(xs) {
+      padding: 0;
+    }
     &__row {
       height: 100%;
     }
@@ -52,9 +59,13 @@ export default {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: #212529;
+      border: 0px
     }
     &__rcolumn {
       padding: 0 10%;
+      background: #212529;
+      border: 0px
     }
     &__row3 {
       display: flex;

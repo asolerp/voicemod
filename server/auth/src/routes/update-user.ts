@@ -25,7 +25,6 @@ router.put(
   async (req: Request, res: Response) => {
 
   const user = await User.findByIdAndUpdate(req.currentUser!.id, {...req.body}, {new: true})
-  console.log(user)
 
   if (!user) {
     throw new NotFoundError()

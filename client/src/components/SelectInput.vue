@@ -4,9 +4,7 @@
     <ValidationProvider :name="name" :rules="rules" v-slot="{ errors }">
       <div class="input-container">
         <select name="select" v-model="inputVal" :class="`text-input-wrapper__input ${getHeight ? 'text-input-wrapper__input--full' : ''}`">
-          <option value="value1">Value 1</option>
-          <option value="value2" selected>Value 2</option>
-          <option value="value3">Value 3</option>
+          <option v-for="item in list" :key="item.code" :value="item.name">{{item.name}}</option>
         </select>
         <!-- <input
           v-model="inputVal"

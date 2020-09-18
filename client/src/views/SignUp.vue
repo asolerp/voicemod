@@ -5,13 +5,21 @@
         <text-input v-model="email" label="Email" :fullWidth="true" name="email" rules="required|email" type="text" />
         <text-input v-model="password" label="Password" :fullWidth="true" name="password" rules="required|min:4|max:20" type="password"/>
         <div class="login-wrapper__row">
-          <text-input v-model="name" name="name" rules="required" label="Name" type="text"/>
-          <text-input v-model="surname" name="surname" rules="required" label="Surname" type="text"/>
+          <v-col class="mr">
+            <text-input v-model="name" name="name" rules="required" label="Name" :fullWidth="true" type="text"/>
+          </v-col>
+            <v-col class="ml">
+            <text-input v-model="surname" name="surname" rules="required" label="Surname" :fullWidth="true" type="text"/>
+          </v-col>
         </div>
-          <text-input v-model="phone" name="phone" rules="required" label="Phone" type="text"/>
+          <text-input v-model="phone" name="phone" rules="required" label="Phone" :fullWidth="$vuetify.breakpoint.mdAndUp ? false : true" type="text"/>
         <div class="login-wrapper__row">
-          <select-input v-model="country" :list="countries" name="country" rules="required" label="Country" type="text"/>
-          <text-input v-model="postalCode" name="postalCode" rules="required" label="Postal Code" type="text"/>
+          <v-col class="mr">
+            <select-input v-model="country" :list="countriesList" name="country" rules="required" label="Country" :fullWidth="true" type="text"/>
+          </v-col>
+            <v-col class="ml">
+            <text-input v-model="postalCode" name="postalCode" rules="required" label="Postal Code" :fullWidth="true" type="text"/>
+          </v-col>
         </div>
         <button-voicemod :loading="status === 'loading'" type="submit" title="Sign Up" :disabled="invalid"/>
       </form>
@@ -63,7 +71,6 @@ export default {
       }
       this.$store.dispatch(AUTH_SIGNUP, newUser)
         .then(() => {
-          console.log('Sign Up')
           this.$router.push({ path: '/home' })
         })
         .catch(() => {
@@ -94,11 +101,17 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
+    @include respond(xs) {
+      padding: 20px 0 20px 0 !important;
+    }
     &__row {
       display: flex;
       justify-content: space-between;
-      width: 100%
+      width: 100%;
+      @include respond(xs) {
+        flex-direction: column;
+      }
     }
   }
   span {

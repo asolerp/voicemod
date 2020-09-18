@@ -23,7 +23,6 @@ const getters = {
 
 const actions = {
   [USER_REQUEST]: ({ commit, dispatch }, userID) => {
-    console.log('TOKEN', localStorage.getItem('user-token'))
     commit(USER_REQUEST)
     Vue.axios.get(`/users/${userID}`, {
       headers: {
@@ -40,7 +39,6 @@ const actions = {
       })
   },
   [USER_UPDATE_REQUEST]: ({ commit, dispatch }, user) => {
-    console.log('USER', console.log(user))
     commit(USER_REQUEST)
     Vue.axios.put('/users/updateuser', user, {
       headers: {
@@ -57,7 +55,6 @@ const actions = {
       })
   },
   [USER_UPDATE_PASSWORD_REQUEST]: ({ commit, dispatch }, newPassword) => {
-    console.log('PASSWORD', newPassword)
     commit(USER_REQUEST)
     Vue.axios.put('/users/updatepassword', { password: newPassword }, {
       headers: {

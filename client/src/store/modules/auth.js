@@ -26,7 +26,6 @@ const actions = {
       commit(AUTH_REQUEST)
       Vue.axios.post('/users/signup', user)
         .then(resp => {
-          console.log(resp)
           localStorage.setItem('user-token', resp.data.token)
           // Here set the header of your ajax library to the token value.
           // example with axios
@@ -47,7 +46,6 @@ const actions = {
       commit(AUTH_REQUEST)
       Vue.axios.post('/users/signin', user)
         .then(resp => {
-          console.log(resp)
           localStorage.setItem('user-token', resp.data.token)
           // Here set the header of your ajax library to the token value.
           // example with axios
