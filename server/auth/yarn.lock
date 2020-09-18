@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@aspvoicemod/common@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@aspvoicemod/common/-/common-1.0.8.tgz#26a3e8f731b279d9a4891794c5a595d48ca8e56b"
+"@aspvoicemod/common@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@aspvoicemod/common/-/common-1.0.12.tgz#e70f3794ca84a65af2c2db5ea72b3a8877a3020c"
   dependencies:
     "@types/cookie-session" "^2.0.39"
     "@types/express" "^4.17.5"

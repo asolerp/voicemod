@@ -1,33 +1,54 @@
 <template>
-  <div :class="`text-input-wrapper ${fullHeight ? 'text-input-wrapper--full' : ''}`">
+  <div :class="`text-input-wrapper ${getHeight ? 'text-input-wrapper--full' : ''}`">
     <p class="text-input-wrapper__label">{{label}}</p>
-    <input :class="`text-input-wrapper__input ${fullHeight ? 'text-input-wrapper__input--full' : ''}`" type="text" />
+    <ValidationProvider :name="name" :rules="rules" v-slot="{ errors }">
+      <div class="input-container">
+        <input
+          v-model="inputVal"
+          @change="$emit('change')"
+          :class="`text-input-wrapper__input ${getHeight ? 'text-input-wrapper__input--full' : ''}`"
+          :type="type"
+        />
+        <span style="color: white; margin-top: 5px">{{ errors[0] }}</span>
+      </div>
+    </ValidationProvider>
   </div>
 </template>
 
 <script>
+
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm'
+
 export default {
   name: 'TextInput',
-  props: {
-    label: {
-      type: String,
-      required: false
+  components: { ValidationProvider },
+  props: ['value', 'label', 'rules', 'type', 'name', 'fullHeight'],
+  computed: {
+    getHeight () {
+      return this.fullHeight
     },
-    fullHeight: {
-      type: Boolean,
-      default: false
+    inputVal: {
+      get () {
+        return this.value
+      },
+      set (val) {
+        this.$emit('input', val)
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  span {
+    width: 100%;
+  }
   .text-input-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     &--full {
       width: 100%;
     }
@@ -49,6 +70,14 @@ export default {
       &--full {
       width: 100%;
       }
+    }
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    span {
+      font-family: 'Roboto';
     }
   }
 </style>

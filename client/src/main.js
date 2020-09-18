@@ -9,7 +9,7 @@ import vuetify from './plugins/vuetify'
 Vue.config.productionTip = false
 
 const instance = axios.create({
-  baseURL: 'http://voicemod-server/'
+  baseURL: 'http://localhost:8081/api'
 })
 
 Vue.use(VueAxios, instance)

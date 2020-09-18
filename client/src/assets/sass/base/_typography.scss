@@ -1,6 +1,6 @@
 h1{
-  font-family: 'Around Bold';
-  font-weight: bold;
+  font-family: 'Roboto';
+  font-weight: 400;
   font-size: 4rem;
   text-align: left;
 
@@ -10,13 +10,13 @@ h1{
 }
 
 h2{
-  font-family: 'Around Light';
+  font-family: 'Roboto';
   text-align: left;
 
 }
 
 h3{
-  font-family: 'Avenir';
+  font-family: 'Roboto';
   text-align: left;
   font-size: 2rem;
   font-weight: 500;
@@ -24,7 +24,7 @@ h3{
 }
 
 h4{
-  font-family: 'Avenir';
+  font-family: 'Roboto';
   text-align: left;
   font-weight: 500;
 
@@ -36,8 +36,8 @@ h4{
 
 p {
   font-family: 'Roboto';
-  font-size: 2rem;
-  font-weight: 200;
+  font-size: 1rem;
+  font-weight: 300;
   @include respond(xs) {
     font-size: 1rem;
   }

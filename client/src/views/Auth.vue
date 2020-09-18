@@ -3,14 +3,13 @@
     <v-row class="login-wrapper__row">
       <v-col class="login-wrapper__lcolumn">
         <logo />
+        <h1 style="color: white">{{getTitle}}</h1>
       </v-col>
       <v-col class="login-wrapper__rcolumn">
-        <!-- <transition name="slide-fade"> -->
           <component
             :is="activeAuth"
             @change-auth-screen="showAuth"
           />
-        <!-- </transition> -->
       </v-col>
     </v-row>
   </v-container>
@@ -33,18 +32,24 @@ export default {
     showAuth (view) {
       this.activeAuth = view
     }
+  },
+  computed: {
+    getTitle () {
+      return this.activeAuth
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
   .login-wrapper {
-    height: 100vh;
+    height: 100%;
     &__row {
       height: 100%;
     }
     &__lcolumn {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
