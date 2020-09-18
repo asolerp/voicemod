@@ -1,4 +1,10 @@
-import { USER_REQUEST, USER_ERROR, USER_SUCCESS, USER_UPDATE, USER_UPDATE_REQUEST } from '../actions/user'
+import {
+  USER_REQUEST,
+  USER_ERROR, USER_SUCCESS,
+  USER_UPDATE, USER_UPDATE_REQUEST,
+  USER_UPDATE_PASSWORD_REQUEST,
+  USER_DELETE_REQUEST
+} from '../actions/user'
 
 import Vue from 'vue'
 import { AUTH_LOGOUT } from '../actions/auth'
@@ -34,7 +40,7 @@ const actions = {
       })
   },
   [USER_UPDATE_REQUEST]: ({ commit, dispatch }, user) => {
-    console.log('TOKEN', localStorage.getItem('user-token'))
+    console.log('USER', console.log(user))
     commit(USER_REQUEST)
     Vue.axios.put('/users/updateuser', user, {
       headers: {
@@ -42,11 +48,51 @@ const actions = {
       }
     })
       .then(resp => {
-        commit(USER_SUCCESS, resp.data)
+        commit(USER_SUCCESS, resp.data.user)
       })
       .catch(() => {
         commit(USER_ERROR)
         // if resp is unauthorized, logout, to
+        dispatch(AUTH_LOGOUT)
+      })
+  },
+  [USER_UPDATE_PASSWORD_REQUEST]: ({ commit, dispatch }, newPassword) => {
+    console.log('PASSWORD', newPassword)
+    commit(USER_REQUEST)
+    Vue.axios.put('/users/updatepassword', { password: newPassword }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('user-token')}`
+      }
+    })
+      .then(resp => {
+        commit(USER_SUCCESS, resp.data.user)
+        Vue.$toast.open({
+          message: '<span style="font-weight: 500; font-size: 20px; font-family: Roboto">Password updated</span>',
+          type: 'success'
+        })
+      })
+      .catch(() => {
+        commit(USER_ERROR)
+        dispatch(AUTH_LOGOUT)
+        Vue.$toast.open({
+          message: '<span style="font-weight: 500; font-size: 20px; font-family: Roboto">Something went wrong..</span>',
+          type: 'error'
+        })
+      })
+  },
+  [USER_DELETE_REQUEST]: ({ commit, dispatch }, user) => {
+    commit(USER_REQUEST)
+    Vue.axios.delete('/users/deleteuser', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('user-token')}`
+      }
+    })
+      .then(resp => {
+        commit(USER_SUCCESS, {})
+        dispatch(AUTH_LOGOUT)
+      })
+      .catch(() => {
+        commit(USER_ERROR)
         dispatch(AUTH_LOGOUT)
       })
   }

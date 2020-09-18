@@ -59,9 +59,12 @@ router.put(
       throw new NotAuthorizedError()
     }
 
+    console.log("Password", req.body.password)
     user.password = await Password.toHash(req.body.password)
 
-    res.status(200).send({message: "Password has been updated"})
+    await user.save()
+
+    res.status(200).send({auth: true, user: user})
 
   }
 )

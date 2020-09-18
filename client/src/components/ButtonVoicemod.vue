@@ -19,7 +19,7 @@ export default {
     },
     disabled: {
       type: Boolean,
-      default: true
+      default: false
     },
     mode: {
       type: String,

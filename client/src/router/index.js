@@ -20,6 +20,10 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '*',
+      component: Auth
     }
   ]
 })
