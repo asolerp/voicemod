@@ -67,7 +67,7 @@ docker-compose up --build
 
 ---
 
-## Tests (Optional)
+## Tests
 
 - To run back end test
 ```shell
