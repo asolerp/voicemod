@@ -2,8 +2,8 @@
   <div class="login-wrapper">
     <ValidationObserver v-slot="{ invalid }">
       <form @submit.prevent="login">
-        <text-input v-model="email" label="Email" :fullHeight="true" name="email" rules="required|email" type="text" />
-        <text-input v-model="password" label="Password" :fullHeight="true" name="password" rules="required|min:4|max:20" type="password"/>
+        <text-input v-model="email" label="Email" :fullWidth="true" name="email" rules="required|email" type="text" />
+        <text-input v-model="password" label="Password" :fullWidth="true" name="password" rules="required|min:4|max:20" type="password"/>
         <button-voicemod type="submit" title="Login" :disabled="invalid"/>
       </form>
     </ValidationObserver>
@@ -17,6 +17,9 @@ import TextInput from '../components/TextInput'
 import ButtonVoicemod from '../components/ButtonVoicemod'
 import { ValidationObserver } from 'vee-validate'
 
+// ACTIONS
+import { AUTH_REQUEST } from '../store/actions/auth'
+
 export default {
   name: 'Login',
   components: { TextInput, ButtonVoicemod, ValidationObserver },
@@ -26,7 +29,11 @@ export default {
   }),
   methods: {
     login () {
-      this.axios.post('/users/signin', { email: this.email, password: this.password }).then(response => console.log(response))
+      const { email, password } = this
+      this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
+        console.log('Logged In')
+        this.$router.push({ path: '/home' })
+      })
     }
   }
 }

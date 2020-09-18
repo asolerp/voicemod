@@ -5,6 +5,8 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import vuetify from './plugins/vuetify'
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 
 Vue.config.productionTip = false
 
@@ -13,6 +15,7 @@ const instance = axios.create({
 })
 
 Vue.use(VueAxios, instance)
+Vue.use(VueLodash, { name: 'custom', lodash: lodash })
 
 new Vue({
   router,

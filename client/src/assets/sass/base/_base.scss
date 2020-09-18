@@ -35,3 +35,27 @@ button:focus {
   box-shadow: none;
 }
 
+.ml {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+.mr {
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.d-bottom {
+  justify-content: flex-end;
+  align-items: center;
+}
+

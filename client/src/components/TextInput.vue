@@ -22,10 +22,10 @@ import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm'
 export default {
   name: 'TextInput',
   components: { ValidationProvider },
-  props: ['value', 'label', 'rules', 'type', 'name', 'fullHeight'],
+  props: ['value', 'label', 'rules', 'type', 'name', 'fullWidth'],
   computed: {
     getHeight () {
-      return this.fullHeight
+      return this.fullWidth
     },
     inputVal: {
       get () {
@@ -62,7 +62,6 @@ export default {
     &__input {
       padding: 15px;
       background: rgba(255, 255, 255, 0.966);
-      box-shadow: 0px 0px 7px 2px #22a3eb;
       border-radius: 15px;
       font-size: 20px;
       font-family: 'Roboto';
@@ -70,6 +69,10 @@ export default {
       &--full {
       width: 100%;
       }
+    }
+    &__input:focus {
+      box-shadow: 0px 0px 7px 3px #22a3eb;
+      transition: all .5s;
     }
   }
   .input-container {

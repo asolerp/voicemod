@@ -17,24 +17,12 @@ import { deleteUserRouter } from './routes/delete-user'
 
 const app = express()
 
-const options: cors.CorsOptions = {
-  allowedHeaders: [
-    'Origin',
-    'X-Requested-With',
-    'Content-Type',
-    'Accept',
-    'X-Access-Token',
-  ],
-  credentials: true,
-  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-  origin: 'http://localhost:8080',
-  preflightContinue: false,
-};
-
 app.set('trust proxy', true)
 
 app.use(json())
-app.use(cors(options))
+
+app.use(cors())
+app.options('*', cors())
 
 app.use(signUpRouter)
 app.use(signInRouter)

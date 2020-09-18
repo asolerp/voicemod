@@ -2,8 +2,8 @@
   <div class="login-wrapper">
     <ValidationObserver v-slot="{ invalid }">
       <form @submit.prevent="onSubmit">
-        <text-input v-model="email" label="Email" :fullHeight="true" name="email" rules="required|email" type="text" />
-        <text-input v-model="password" label="Password" :fullHeight="true" name="password" rules="required|min:4|max:20" type="password"/>
+        <text-input v-model="email" label="Email" :fullWidth="true" name="email" rules="required|email" type="text" />
+        <text-input v-model="password" label="Password" :fullWidth="true" name="password" rules="required|min:4|max:20" type="password"/>
         <div class="login-wrapper__row">
           <text-input v-model="name" name="name" rules="required" label="Nombre" type="text"/>
           <text-input v-model="surname" name="surname" rules="required" label="Apellido" type="text"/>
