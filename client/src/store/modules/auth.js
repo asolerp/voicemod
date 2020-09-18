@@ -15,7 +15,7 @@ const state = {
   hasLoadedOnce: false
 }
 
-const getters = {
+export const getters = {
   isAuthenticated: state => !!state.token,
   authStatus: state => state.status
 }
@@ -70,7 +70,7 @@ const actions = {
   }
 }
 
-const mutations = {
+export const mutations = {
   [AUTH_REQUEST]: state => {
     state.status = 'loading'
   },

@@ -16,7 +16,7 @@ const state = {
   profile: JSON.parse(localProfile) || {}
 }
 
-const getters = {
+export const getters = {
   getProfile: state => state.profile,
   isProfileLoaded: state => !!state.profile.name
 }
@@ -95,7 +95,7 @@ const actions = {
   }
 }
 
-const mutations = {
+export const mutations = {
   [USER_REQUEST]: state => {
     state.status = 'loading'
   },
