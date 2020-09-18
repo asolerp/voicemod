@@ -1,0 +1,46 @@
+h1{
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 4rem;
+  text-align: left;
+
+  @include respond(xs) {
+    font-size: 2rem;
+  }
+}
+
+h2{
+  font-family: 'Roboto';
+  text-align: left;
+
+}
+
+h3{
+  font-family: 'Roboto';
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 500;
+
+}
+
+h4{
+  font-family: 'Roboto';
+  text-align: left;
+  font-weight: 500;
+
+  @include respond(xs) {
+    font-size: 3rem;
+  }
+}
+
+
+p {
+  font-family: 'Roboto';
+  font-size: 1rem;
+  font-weight: 300;
+  @include respond(xs) {
+    font-size: 1rem;
+  }
+}
+
+

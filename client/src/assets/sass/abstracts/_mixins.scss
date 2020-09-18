@@ -1,0 +1,31 @@
+
+
+/*
+$breakpoint argument choices:
+- xs
+- sm
+- md
+- lg
+- xl
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: 600px) { @content };
+  }
+  @if $breakpoint == sm {
+    @media (max-width: 960px) { @content };
+  }
+  @if $breakpoint == sm-land {
+    @media (max-width: 960px ) and (orientation: landscape) { @content };
+  }
+  @if $breakpoint == md {
+    @media (max-width: 1264px) { @content };
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 1904px) { @content };
+  }
+  @if $breakpoint == xl {
+    @media (min-width: 1904px) { @content };
+  }
+}

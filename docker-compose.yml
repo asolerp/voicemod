@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  client:
+    build: ./client
+    ports:
+      - 8080:8080
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    environment:
+      - API_URL=http://localhost:8081/
+    depends_on: 
+      - server
+  server:
+    build: ./server/auth
+    ports:
+      - 8081:8081
+    volumes:
+      - ./server/auth/:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on: 
+      - mongo
+    env_file: .env
