@@ -65,6 +65,9 @@ Client and server are both inside docker images, ready to up and go!!
 docker-compose up --build
 ```
 
+- Front `http://localhost:8080`
+- Back `http://localhost:8081`
+
 ---
 
 ## Tests
