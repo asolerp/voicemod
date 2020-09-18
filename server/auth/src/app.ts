@@ -2,7 +2,6 @@
 import express from 'express'
 import 'express-async-errors'
 import { json } from 'body-parser'
-import cookieSession from 'cookie-session'
 import { errorHandler, NotFoundError } from '@aspvoicemod/common'
 import cors from 'cors'
 
@@ -35,13 +34,6 @@ const options: cors.CorsOptions = {
 app.set('trust proxy', true)
 
 app.use(json())
-app.use(
-  cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== 'test'
-  })
-  )
-
 app.use(cors(options))
 
 app.use(signUpRouter)

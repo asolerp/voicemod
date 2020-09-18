@@ -4,13 +4,9 @@ import { User } from '../models/user'
 
 const router = express.Router()
 
-router.get('/api/users/:id', requireAuth, async (req: Request, res: Response) => {
-
-  console.log("Holaaaaa")
+router.get('/api/users/:id', currentUser, requireAuth, async (req: Request, res: Response) => {
   
   const user = await User.findById(req.params.id)
-
-  console.log(user)
 
   if (!user) {
     throw new NotFoundError()

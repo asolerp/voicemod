@@ -6,11 +6,11 @@ import { voicemodTestUser1, voicemodTestUser2 } from '../../test/setup'
 
 it('Delete user succesfully', async () => {
 
-  const cookie = await global.signin()
+  const token = await global.signin()
 
   await request(app)
     .delete(`/api/users/deleteUser`)
-    .set('Cookie', cookie)
+    .set('Authorization', 'bearer ' + token)
     .send()
     .expect(204)
 

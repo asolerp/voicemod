@@ -11,8 +11,6 @@ router.get('/hola', (req: Request, res: Response) => {
 })
 
 router.get('/api/users/currentuser',currentUser,(req: Request, res: Response) => {
-  console.log(req.headers.authorization)
-  console.log(req.currentUser)
   res.status(200).send({ currentUser: req.currentUser || null })
 })
 

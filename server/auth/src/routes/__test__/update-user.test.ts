@@ -26,7 +26,7 @@ it('Update user with correrct data', async () => {
   // Update User
    await request(app)
     .put('/api/users/updateuser')
-    .set('Cookie', response.get('Set-Cookie'))
+    .set('Authorization', 'bearer ' + response.body.token)
     .send({
       ...voicemodTestUser1,
       name: newName
@@ -34,8 +34,8 @@ it('Update user with correrct data', async () => {
     .expect(204);
 
   const userResonse = await request(app)
-    .get(`/api/users/${response.body._id}`)
-    .set('Cookie', response.get('Set-Cookie'))
+    .get(`/api/users/${response.body.user._id}`)
+    .set('Authorization', 'bearer ' + response.body.token)
     .send()
     .expect(200)
 
@@ -64,7 +64,7 @@ it('Returns 400 on bad request', async () => {
   // Update User
   await request(app)
     .put('/api/users/updateuser')
-    .set('Cookie', response.get('Set-Cookie'))
+    .set('Authorization', 'bearer ' + response.body.token)
     .send({
       name: newName
     })
