@@ -138,6 +138,7 @@ export default {
     deleteUser () {
       this.$store.dispatch(USER_DELETE_REQUEST).then(() => {
         console.log('User deleted')
+        window.location.reload()
       })
     },
     updatePassword () {

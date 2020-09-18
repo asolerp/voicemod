@@ -59,8 +59,7 @@ router.put(
       throw new NotAuthorizedError()
     }
 
-    console.log("Password", req.body.password)
-    user.password = await Password.toHash(req.body.password)
+    user.password = req.body.password
 
     await user.save()
 
