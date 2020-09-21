@@ -13,24 +13,39 @@
 export default {
   name: 'ButtonVoicemod',
   props: {
+    /**
+    * The text of the button.
+    */
     title: {
       type: String,
       default: 'Button'
     },
+    /**
+     * Mark button as disabled
+     */
     disabled: {
       type: Boolean,
       default: false
     },
+    /**
+     * Defines the mode of the button.
+     */
     mode: {
       type: String,
       default: 'normal'
     },
+    /**
+     * Defines if button shows loading spinner
+     */
     loading: {
       type: Boolean,
       default: false
     }
   },
   computed: {
+    /**
+     * Define the css of the button mode
+     */
     setMode () {
       switch (this.mode) {
         case 'normal':

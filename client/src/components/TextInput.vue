@@ -24,9 +24,15 @@ export default {
   components: { ValidationProvider },
   props: ['value', 'label', 'rules', 'type', 'name', 'fullWidth'],
   computed: {
+    /**
+     * Gets if select input has full width
+     */
     getHeight () {
       return this.fullWidth
     },
+    /**
+     * Getter / setter input
+     */
     inputVal: {
       get () {
         return this.value
