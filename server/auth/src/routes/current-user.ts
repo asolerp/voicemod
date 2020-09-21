@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express'
 import { currentUser } from '@aspvoicemod/common'
-import { User } from '../models/user'
 
 const router = express.Router()
 
